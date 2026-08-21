@@ -956,8 +956,8 @@ h1,h2,h3,h4{font-weight:400;letter-spacing:0;line-height:1.0}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath fill='%23f4ecdf' d='M0,60 L0,30 C300,58 560,6 820,26 C1060,44 1240,40 1440,18 L1440,60 Z'/%3E%3C/svg%3E")}
 
 /* Taza a taza: SVG +50% y desplazado a la derecha */
-.ill-taza img{width:min(100%,570px);transform:translateX(16%)}
-@media(max-width:860px){.ill-taza img{transform:none;width:min(82%,420px)}}
+.ill-taza img{width:min(108%,680px);transform:none}
+@media(max-width:860px){.ill-taza img{transform:none;width:min(96%,520px)}}
 
 /* =========================================================
    v10 — transición suave (sin preloader) · navbar verde ·
@@ -1014,9 +1014,9 @@ body.kn-open .kn-plus{color:var(--ink)}
 .kn-toggle:focus-visible{outline:2px solid var(--coral);outline-offset:3px}
 
 /* Navbar: al hacer scroll se vuelve MÁS ANGOSTA (no más baja) */
-.kn-bar{transition:max-width 1s var(--ease),margin 1s var(--ease),background .5s,box-shadow .5s,border-color .5s}
-.kn-head.scrolled .kn-bar{max-width:900px;margin-inline:auto}
-@media(max-width:900px){ .kn-head.scrolled .kn-bar{margin-inline:5vw} }
+/* ancho base explícito (px) para que la transición sea SUAVE y no salte desde 'none' */
+.kn-bar{max-width:var(--maxw);margin-inline:auto;transition:max-width 1s var(--ease),background .5s,box-shadow .5s,border-color .5s}
+.kn-head.scrolled .kn-bar{max-width:900px}
 
 /* Footer: onda visible (salvia) + badge oscuro para que se lea el logo claro */
 .foot{background:var(--aqua-soft);overflow-x:clip;overflow-y:visible}
@@ -1037,10 +1037,12 @@ body.kn-open .kn-bar{background:transparent;box-shadow:none;border-color:transpa
   position:relative;display:grid;place-items:center;min-height:clamp(220px,26vw,300px)}
 .menu-cat-band .mcb-img::before{content:"";position:absolute;z-index:0;
   top:50%;left:50%;transform:translate(-50%,-50%);
-  width:74%;aspect-ratio:1;border-radius:50%;
+  width:clamp(230px,25vw,300px);aspect-ratio:1;border-radius:50%;
   background:var(--leaf-soft);opacity:.55;filter:blur(26px)}
+/* todas las ilustraciones ocupan la MISMA caja cuadrada (contain, sin recortar) */
 .menu-cat-band .mcb-img img{position:relative;z-index:1;
-  width:min(88%,360px);height:auto;min-height:0;object-fit:contain;
+  width:clamp(240px,26vw,320px);height:clamp(240px,26vw,320px);
+  min-height:0;object-fit:contain;
   filter:drop-shadow(0 20px 30px rgba(47,33,24,.16))}
 
 .print-band .polaroid{
