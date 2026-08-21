@@ -1014,7 +1014,7 @@ body.kn-open .kn-plus{color:var(--ink)}
 .kn-toggle:focus-visible{outline:2px solid var(--coral);outline-offset:3px}
 
 /* Navbar: al hacer scroll se vuelve MÁS ANGOSTA (no más baja) */
-.kn-bar{transition:max-width .45s var(--ease),margin .45s var(--ease),background .4s,box-shadow .4s,border-color .4s}
+.kn-bar{transition:max-width 1s var(--ease),margin 1s var(--ease),background .5s,box-shadow .5s,border-color .5s}
 .kn-head.scrolled .kn-bar{max-width:900px;margin-inline:auto}
 @media(max-width:900px){ .kn-head.scrolled .kn-bar{margin-inline:5vw} }
 
@@ -1029,7 +1029,28 @@ body.kn-open .kn-plus{color:var(--ink)}
 /* Menú abierto: la barra verde se vuelve transparente para que "Cerrar" quede limpio */
 body.kn-open .kn-bar{background:transparent;box-shadow:none;border-color:transparent;backdrop-filter:none}
 
-/* Ilustraciones SVG en la carta: line-art sobre fondo cálido (sin recortar) */
-.menu-cat-band .mcb-img{background:var(--mango-soft)}
-.menu-cat-band .mcb-img img[src$=".svg"]{object-fit:contain;padding:20px}
-.print-band .polaroid img[src$=".svg"]{width:100%;object-fit:contain;background:var(--mango-soft)}
+/* Ilustraciones SVG: sin marco ni fondo, flotando con una aura detrás
+   (igual que las del home: .hero-ill/.ill-free) */
+.menu-cat-band .mcb-img{
+  background:none!important;border:0!important;box-shadow:none!important;
+  overflow:visible!important;aspect-ratio:auto!important;border-radius:0!important;
+  position:relative;display:grid;place-items:center;min-height:clamp(220px,26vw,300px)}
+.menu-cat-band .mcb-img::before{content:"";position:absolute;z-index:0;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  width:74%;aspect-ratio:1;border-radius:50%;
+  background:var(--leaf-soft);opacity:.55;filter:blur(26px)}
+.menu-cat-band .mcb-img img{position:relative;z-index:1;
+  width:min(88%,360px);height:auto;min-height:0;object-fit:contain;
+  filter:drop-shadow(0 20px 30px rgba(47,33,24,.16))}
+
+.print-band .polaroid{
+  background:none!important;border:0!important;box-shadow:none!important;
+  overflow:visible!important;border-radius:0!important;transform:none!important;
+  position:relative;display:grid;place-items:center;max-width:none}
+.print-band .polaroid::before{content:"";position:absolute;z-index:0;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  width:68%;aspect-ratio:1;border-radius:50%;
+  background:var(--leaf-soft);opacity:.55;filter:blur(26px)}
+.print-band .polaroid img{position:relative;z-index:1;
+  width:min(82%,360px);height:auto;aspect-ratio:auto;object-fit:contain;background:none;
+  filter:drop-shadow(0 20px 30px rgba(47,33,24,.16))}
