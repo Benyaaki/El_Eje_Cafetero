@@ -6,11 +6,22 @@
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
 
-  /* Preloader */
-  window.addEventListener("load", () => {
-    const pre = $("#preloader");
-    if (pre) setTimeout(() => pre.classList.add("done"), 500);
+  /* Transición suave entre páginas (fade con velo, sin pantalla de carga) */
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (!a) return;
+    const href = a.getAttribute("href");
+    if (!href || a.target === "_blank" || a.hasAttribute("download")) return;
+    // solo enlaces internos .html del mismo sitio
+    if (/^(#|https?:|mailto:|tel:|wa\.me)/i.test(href)) return;
+    if (!/\.html($|[?#])/.test(href)) return;
+    if (a.href === location.href) return;
+    e.preventDefault();
+    document.body.classList.add("leaving");
+    setTimeout(() => { location.href = a.href; }, 360);
   });
+  // al volver con el botón atrás, quita el velo
+  window.addEventListener("pageshow", () => document.body.classList.remove("leaving"));
 
   /* Header scroll + back to top */
   const head = $(".kn-head");

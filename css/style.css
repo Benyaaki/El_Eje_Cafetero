@@ -958,3 +958,70 @@ h1,h2,h3,h4{font-weight:400;letter-spacing:0;line-height:1.0}
 /* Taza a taza: SVG +50% y desplazado a la derecha */
 .ill-taza img{width:min(100%,570px);transform:translateX(16%)}
 @media(max-width:860px){.ill-taza img{transform:none;width:min(82%,420px)}}
+
+/* =========================================================
+   v10 — transición suave (sin preloader) · navbar verde ·
+          hero móvil reordenado · ocultar secciones en móvil
+   ========================================================= */
+
+/* Entrada de página suave (reemplaza la pantalla de carga) */
+@keyframes pageIn{from{opacity:0}to{opacity:1}}
+body{animation:pageIn .5s var(--ease) both}
+@media(prefers-reduced-motion:reduce){body{animation:none}}
+
+/* Navbar verde distintivo, con texto y logo claros */
+.kn-bar,
+.kn-head.scrolled .kn-bar{
+  background:var(--coral);
+  border-color:transparent;
+  box-shadow:0 12px 28px -16px rgba(36,58,44,.6);
+}
+.kn-head .brand .bt b{color:var(--cream)}
+.kn-head .brand .bt small{color:var(--mango-soft)}
+.kn-words{color:var(--cream)}
+.kn-plus{color:var(--cream)}
+/* el logo es claro -> disco oscuro para que se lean las letras */
+.kn-head .brand img{background:var(--espresso)}
+
+/* Ocultar en móvil: carrusel y "El ritual del buen café" */
+@media(max-width:860px){
+  .hide-mobile{display:none!important}
+}
+
+/* Hero en móvil: SVG primero, luego el nombre (El Eje Cafetero) y "Encanto" debajo */
+@media(max-width:860px){
+  .hero{padding:132px 0 72px}
+  .hero-ill{order:-1}
+  .hero-ill img{width:min(70%,300px)}
+  .hero-text{text-align:center}
+  .hero h1{display:flex;flex-direction:column;align-items:center;margin:16px 0 8px}
+  .hero h1 .plain{order:1;font-family:var(--font-display);font-weight:700;
+    font-size:clamp(2.7rem,11vw,3.8rem);line-height:.92;color:var(--coral);letter-spacing:.01em}
+  .hero h1 .en{order:2;font-size:clamp(1.5rem,6.5vw,2rem);color:var(--ink-soft);margin-top:4px}
+  .hero .lead{margin-inline:auto}
+  .hero-cta{justify-content:center}
+}
+
+/* =========================================================
+   v11 — toggle "Cerrar" legible · navbar que se achica al
+          bajar · ondas del footer visibles · badge oscuro
+   ========================================================= */
+
+/* "Cerrar": al abrir el menú el cajón es claro -> texto oscuro y sin caja de foco fea */
+body.kn-open .kn-words,
+body.kn-open .kn-plus{color:var(--ink)}
+.kn-toggle{outline:none;border-radius:12px}
+.kn-toggle:focus-visible{outline:2px solid var(--coral);outline-offset:3px}
+
+/* Navbar: se achica un poco al hacer scroll (efecto de cambio) */
+.kn-head .brand{transition:transform .4s var(--ease);transform-origin:left center}
+.kn-head.scrolled .kn-bar{padding:6px 14px 6px 14px}
+.kn-head.scrolled .brand{transform:scale(.84)}
+
+/* Footer: onda visible (salvia) + badge oscuro para que se lea el logo claro */
+.foot{background:var(--aqua-soft);overflow-x:clip;overflow-y:visible}
+.foot::before{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath fill='%23d7ddce' d='M0,60 L0,30 C300,58 560,6 820,26 C1060,44 1240,40 1440,18 L1440,60 Z'/%3E%3C/svg%3E");
+}
+.foot-social a{background:var(--paper)}
+.foot-badge{background:var(--espresso)}
