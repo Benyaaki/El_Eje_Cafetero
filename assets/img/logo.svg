@@ -1,0 +1,26 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f1c15b"/>
+      <stop offset="0.5" stop-color="#e58c6a"/>
+      <stop offset="1" stop-color="#6cbdb4"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="94" fill="#fffdf9" stroke="url(#ring)" stroke-width="4"/>
+  <circle cx="100" cy="100" r="85" fill="none" stroke="#e7d8c3" stroke-width="1.4" stroke-dasharray="2 5"/>
+  <!-- tricolor arc -->
+  <path d="M42 156 A70 70 0 0 0 158 156" fill="none" stroke="#83aede" stroke-width="4" stroke-linecap="round" opacity="0.85"/>
+  <path d="M46 162 A68 68 0 0 0 154 162" fill="none" stroke="#e58c6a" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+  <!-- steam -->
+  <g stroke="#e58c6a" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8">
+    <path d="M87 52 q-6 -8 0 -16 q6 -8 0 -16"/>
+    <path d="M100 50 q-6 -8 0 -16 q6 -8 0 -16"/>
+    <path d="M113 52 q-6 -8 0 -16 q6 -8 0 -16"/>
+  </g>
+  <!-- cup -->
+  <path d="M63 84 h74 v18 a29 29 0 0 1 -29 29 h-16 a29 29 0 0 1 -29 -29 z" fill="#fbf3e6" stroke="#e58c6a" stroke-width="4"/>
+  <path d="M137 90 a15 15 0 0 1 0 28" fill="none" stroke="#e58c6a" stroke-width="4"/>
+  <!-- leaf art on surface -->
+  <ellipse cx="100" cy="90" rx="33" ry="6.5" fill="#f6ead6"/>
+  <path d="M100 88 q10 -3 18 2 q-9 4 -18 -2z" fill="#8fb473"/>
+</svg>
