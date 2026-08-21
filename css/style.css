@@ -1013,10 +1013,10 @@ body.kn-open .kn-plus{color:var(--ink)}
 .kn-toggle{outline:none;border-radius:12px}
 .kn-toggle:focus-visible{outline:2px solid var(--coral);outline-offset:3px}
 
-/* Navbar: se achica un poco al hacer scroll (efecto de cambio) */
-.kn-head .brand{transition:transform .4s var(--ease);transform-origin:left center}
-.kn-head.scrolled .kn-bar{padding:6px 14px 6px 14px}
-.kn-head.scrolled .brand{transform:scale(.84)}
+/* Navbar: al hacer scroll se vuelve MÁS ANGOSTA (no más baja) */
+.kn-bar{transition:max-width .45s var(--ease),margin .45s var(--ease),background .4s,box-shadow .4s,border-color .4s}
+.kn-head.scrolled .kn-bar{max-width:900px;margin-inline:auto}
+@media(max-width:900px){ .kn-head.scrolled .kn-bar{margin-inline:5vw} }
 
 /* Footer: onda visible (salvia) + badge oscuro para que se lea el logo claro */
 .foot{background:var(--aqua-soft);overflow-x:clip;overflow-y:visible}
@@ -1025,3 +1025,11 @@ body.kn-open .kn-plus{color:var(--ink)}
 }
 .foot-social a{background:var(--paper)}
 .foot-badge{background:var(--espresso)}
+
+/* Menú abierto: la barra verde se vuelve transparente para que "Cerrar" quede limpio */
+body.kn-open .kn-bar{background:transparent;box-shadow:none;border-color:transparent;backdrop-filter:none}
+
+/* Ilustraciones SVG en la carta: line-art sobre fondo cálido (sin recortar) */
+.menu-cat-band .mcb-img{background:var(--mango-soft)}
+.menu-cat-band .mcb-img img[src$=".svg"]{object-fit:contain;padding:20px}
+.print-band .polaroid img[src$=".svg"]{width:100%;object-fit:contain;background:var(--mango-soft)}
