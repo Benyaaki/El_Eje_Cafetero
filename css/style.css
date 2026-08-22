@@ -1066,3 +1066,13 @@ body.kn-open .kn-bar{background:transparent;box-shadow:none;border-color:transpa
   .print-band .polaroid-lg img{width:430px}
   .print-band .polaroid-lg::before{width:365px}
 }
+
+/* =========================================================
+   Sección verde sobre el footer café (contacto) — que no se
+   fusione con el footer. Onda verde arriba; abajo separa la
+   onda propia del footer.
+   ========================================================= */
+.sec-green{background:var(--coral-soft)}
+.sec-green.wv-sage::before{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath fill='%23dbe3d6' d='M0,60 L0,30 C300,58 560,6 820,26 C1060,44 1240,40 1440,18 L1440,60 Z'/%3E%3C/svg%3E")}
+.sec-green.wv-sage::after{display:none}
