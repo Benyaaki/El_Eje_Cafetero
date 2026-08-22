@@ -257,18 +257,28 @@
   }
   $$("[data-coverflow]").forEach(buildCoverflow);
 
-  /* Menu filters */
+  /* Menú: los botones saltan a la sección (sin ocultar el resto) */
   const filterBtns = $$(".filter-btn");
   if (filterBtns.length) {
+    const setActive = (cat) => filterBtns.forEach((b) => b.classList.toggle("active", b.dataset.filter === cat));
+    const jumpTo = (cat) => {
+      const el = (cat === "all") ? $(".menu-cat") : $(`.menu-cat[data-cat="${cat}"]`);
+      // scroll-margin-top (CSS) deja el hueco de la barra sticky; scrollIntoView
+      // encuentra el contenedor de scroll correcto (ventana o body).
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
     filterBtns.forEach((btn) => btn.addEventListener("click", () => {
-      const cat = btn.dataset.filter;
-      filterBtns.forEach((b) => b.classList.toggle("active", b === btn));
-      $$(".menu-cat").forEach((sec) => { sec.style.display = (cat === "all" || sec.dataset.cat === cat) ? "" : "none"; });
-      if (cat !== "all") {
-        const el = $(`.menu-cat[data-cat="${cat}"]`);
-        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 140, behavior: "smooth" });
-      }
+      setActive(btn.dataset.filter);
+      jumpTo(btn.dataset.filter);
     }));
+    // scrollspy: marca en la barra la sección que se está viendo
+    const cats = $$(".menu-cat");
+    if (cats.length && "IntersectionObserver" in window) {
+      const spy = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.dataset.cat); });
+      }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+      cats.forEach((c) => spy.observe(c));
+    }
   }
 
   /* Lightbox */
