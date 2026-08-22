@@ -28,16 +28,19 @@
   --mango-soft:#f0e2cb;
   --aqua:#7c8a78;       /* salvia */
   --aqua-deep:#5c7a63;
-  --aqua-soft:#d7ddce;
+  --aqua-soft:#e7d6bd;   /* café pastel (era salvia) */
   --leaf:#5c7a63;
   --leaf-deep:#36614b;
-  --leaf-soft:#cdd6cb;
+  --leaf-soft:#ecdfca;   /* café pastel claro (auras) */
   --rose:#c6893f;
   --rose-soft:#f0e2cb;
   --sky:#8fa08d;
   --sky-deep:#5c7a63;
-  --sky-soft:#d9dfd2;
+  --sky-soft:#eee4d3;
   --wa:#3f7d59;
+
+  /* CAFÉS PASTELES (paleta cliente) */
+  --cafe-soft:#e7d6bd; --cafe:#c1a487; --cafe-deep:#9b7a52;
 
   --radius:16px;
   --radius-lg:26px;
@@ -919,9 +922,9 @@ h1,h2,h3,h4{font-weight:400;letter-spacing:0;line-height:1.0}
 .wv-sage{position:relative}
 .wv-sage::before,.wv-sage::after{content:"";position:absolute;left:0;width:100%;height:clamp(34px,5vw,64px);pointer-events:none;background-repeat:no-repeat;background-size:100% 100%}
 .wv-sage::before{top:0;transform:translateY(-98%);
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath fill='%23d7ddce' d='M0,60 L0,30 C300,58 560,6 820,26 C1060,44 1240,40 1440,18 L1440,60 Z'/%3E%3C/svg%3E")}
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath fill='%23e7d6bd' d='M0,60 L0,30 C300,58 560,6 820,26 C1060,44 1240,40 1440,18 L1440,60 Z'/%3E%3C/svg%3E")}
 .wv-sage::after{bottom:0;transform:translateY(98%);
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath fill='%23d7ddce' d='M0,0 L0,30 C300,2 560,54 820,34 C1060,16 1240,20 1440,42 L1440,0 Z'/%3E%3C/svg%3E")}
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath fill='%23e7d6bd' d='M0,0 L0,30 C300,2 560,54 820,34 C1060,16 1240,20 1440,42 L1440,0 Z'/%3E%3C/svg%3E")}
 
 /* Bordes de fotos en dorado (ámbar), no blanco */
 .menu-cat-band .mcb-img,.cflow-card,.map-embed,#lightbox img,.zz-media .frame,.method .ph,.hero-media .m-main{border-color:var(--mango)!important}
@@ -1021,7 +1024,7 @@ body.kn-open .kn-plus{color:var(--ink)}
 /* Footer: onda visible (salvia) + badge oscuro para que se lea el logo claro */
 .foot{background:var(--aqua-soft);overflow-x:clip;overflow-y:visible}
 .foot::before{
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath fill='%23d7ddce' d='M0,60 L0,30 C300,58 560,6 820,26 C1060,44 1240,40 1440,18 L1440,60 Z'/%3E%3C/svg%3E");
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath fill='%23e7d6bd' d='M0,60 L0,30 C300,58 560,6 820,26 C1060,44 1240,40 1440,18 L1440,60 Z'/%3E%3C/svg%3E");
 }
 .foot-social a{background:var(--paper)}
 .foot-badge{background:var(--espresso)}
