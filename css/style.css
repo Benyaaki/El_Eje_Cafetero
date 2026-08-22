@@ -1039,10 +1039,11 @@ body.kn-open .kn-bar{background:transparent;box-shadow:none;border-color:transpa
   top:50%;left:50%;transform:translate(-50%,-50%);
   width:clamp(230px,25vw,300px);aspect-ratio:1;border-radius:50%;
   background:var(--leaf-soft);opacity:.55;filter:blur(26px)}
-/* todas las ilustraciones ocupan la MISMA caja cuadrada (contain, sin recortar) */
-.menu-cat-band .mcb-img img{position:relative;z-index:1;
-  width:clamp(240px,26vw,320px);height:clamp(240px,26vw,320px);
-  min-height:0;object-fit:contain;
+/* todas las ilustraciones ocupan la MISMA caja cuadrada (contain, sin recortar);
+   el padding deja aire alrededor para que ninguna quede pegada a un borde */
+.menu-cat-band .mcb-img img{position:relative;z-index:1;box-sizing:border-box;
+  width:clamp(252px,28vw,344px);height:clamp(252px,28vw,344px);
+  min-height:0;object-fit:contain;padding:clamp(16px,2.4vw,30px);
   filter:drop-shadow(0 20px 30px rgba(47,33,24,.16))}
 
 .print-band .polaroid{
