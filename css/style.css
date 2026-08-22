@@ -956,8 +956,8 @@ h1,h2,h3,h4{font-weight:400;letter-spacing:0;line-height:1.0}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath fill='%23f4ecdf' d='M0,60 L0,30 C300,58 560,6 820,26 C1060,44 1240,40 1440,18 L1440,60 Z'/%3E%3C/svg%3E")}
 
 /* Taza a taza: SVG +50% y desplazado a la derecha */
-.ill-taza img{width:min(108%,680px);transform:none}
-@media(max-width:860px){.ill-taza img{transform:none;width:min(96%,520px)}}
+.ill-taza img{width:min(115%,740px);transform:none}
+@media(max-width:860px){.ill-taza img{transform:none;width:min(98%,560px)}}
 
 /* =========================================================
    v10 — transición suave (sin preloader) · navbar verde ·
@@ -1052,8 +1052,8 @@ body.kn-open .kn-bar{background:transparent;box-shadow:none;border-color:transpa
   position:relative;display:grid;place-items:center;max-width:none}
 .print-band .polaroid::before{content:"";position:absolute;z-index:0;
   top:50%;left:50%;transform:translate(-50%,-50%);
-  width:68%;aspect-ratio:1;border-radius:50%;
-  background:var(--leaf-soft);opacity:.55;filter:blur(26px)}
+  width:80%;aspect-ratio:1;border-radius:50%;
+  background:var(--leaf-soft);opacity:.55;filter:blur(28px)}
 .print-band .polaroid img{position:relative;z-index:1;
-  width:min(82%,360px);height:auto;aspect-ratio:auto;object-fit:contain;background:none;
+  width:min(96%,460px);height:auto;aspect-ratio:auto;object-fit:contain;background:none;
   filter:drop-shadow(0 20px 30px rgba(47,33,24,.16))}
