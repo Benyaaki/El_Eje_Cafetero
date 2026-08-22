@@ -6,6 +6,73 @@
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
 
+  /* ===========================================================
+     CARTA EDITABLE — los productos/precios se leen de un CSV
+     (Google Sheets publicado o archivo local). Si falla, se usan
+     los ítems que ya están escritos en carta.html (respaldo).
+     Para conectar Google Sheets: publica la hoja como CSV y pega
+     su URL en CARTA_SHEET_CSV. Para desactivar: deja "".
+     =========================================================== */
+  window.CARTA_SHEET_CSV = window.CARTA_SHEET_CSV || "assets/data/carta.csv";
+  (function cartaFromCSV() {
+    const lists = $$('.menu-list[data-list]');
+    if (!lists.length || !window.CARTA_SHEET_CSV) return; // solo en carta.html
+    const slug = s => (s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-+|-+$/g, "").toLowerCase();
+    const esc = s => (s == null ? "" : String(s)).replace(/[&<>"]/g,
+      c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    function parseCSV(text) {
+      text = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+      const rows = []; let row = [], f = "", q = false, i = 0;
+      while (i < text.length) {
+        const c = text[i];
+        if (q) { if (c === '"') { if (text[i + 1] === '"') { f += '"'; i += 2; continue; } q = false; i++; continue; } f += c; i++; continue; }
+        if (c === '"') { q = true; i++; continue; }
+        if (c === ",") { row.push(f); f = ""; i++; continue; }
+        if (c === "\n") { row.push(f); rows.push(row); row = []; f = ""; i++; continue; }
+        f += c; i++;
+      }
+      if (f.length || row.length) { row.push(f); rows.push(row); }
+      return rows.filter(r => r.some(c => c.trim() !== ""));
+    }
+    const priceHTML = p => esc((p || "").trim()).replace(/\s*\/\s*(.+)$/, ' <small>/ $1</small>');
+    const itemHTML = it =>
+      `<div class="mitem"><div class="mi-main"><div class="mi-name">${esc(it.n)}` +
+      (it.et ? ` <span class="v">${esc(it.et)}</span>` : "") + `</div>` +
+      (it.d ? `<div class="mi-desc">${esc(it.d)}</div>` : "") +
+      `</div><span class="dots"></span><span class="mi-price">${priceHTML(it.p)}</span></div>`;
+    function build(text) {
+      const rows = parseCSV(text);
+      const hIdx = rows.findIndex(r => { const h = r.map(slug); return h.includes("seccion") && h.includes("producto") && h.includes("precio"); });
+      if (hIdx < 0) return;
+      const H = rows[hIdx].map(slug);
+      const ci = { sec: H.indexOf("seccion"), prod: H.indexOf("producto"), desc: H.indexOf("descripcion"), price: H.indexOf("precio"), et: H.indexOf("etiqueta") };
+      if (ci.sec < 0 || ci.prod < 0 || ci.price < 0) return;
+      const bySec = {};
+      for (let r = hIdx + 1; r < rows.length; r++) {
+        const row = rows[r]; const name = (row[ci.prod] || "").trim();
+        if (!name) continue;
+        const key = slug(row[ci.sec] || "");
+        (bySec[key] = bySec[key] || []).push({
+          n: name, d: ci.desc >= 0 ? (row[ci.desc] || "").trim() : "",
+          p: (row[ci.price] || "").trim(), et: ci.et >= 0 ? (row[ci.et] || "").trim() : ""
+        });
+      }
+      if (!Object.keys(bySec).length) return;
+      lists.forEach(ul => {
+        const items = bySec[ul.getAttribute("data-list")];
+        if (items && items.length) ul.innerHTML = items.map(itemHTML).join("");
+      });
+    }
+    const ctrl = ("AbortController" in window) ? new AbortController() : null;
+    const t = ctrl ? setTimeout(() => ctrl.abort(), 6000) : null;
+    const opts = { cache: "no-store" }; if (ctrl) opts.signal = ctrl.signal;
+    fetch(window.CARTA_SHEET_CSV, opts)
+      .then(r => r.ok ? r.text() : Promise.reject(r.status))
+      .then(txt => { if (t) clearTimeout(t); try { build(txt); } catch (e) { } })
+      .catch(() => { if (t) clearTimeout(t); /* respaldo: ítems estáticos de carta.html */ });
+  })();
+
   /* Transición suave entre páginas (fade con velo, sin pantalla de carga) */
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
