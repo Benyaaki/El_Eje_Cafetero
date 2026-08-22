@@ -1057,3 +1057,9 @@ body.kn-open .kn-bar{background:transparent;box-shadow:none;border-color:transpa
 .print-band .polaroid img{position:relative;z-index:1;
   width:min(96%,460px);height:auto;aspect-ratio:auto;object-fit:contain;background:none;
   filter:drop-shadow(0 20px 30px rgba(47,33,24,.16))}
+/* Inicio (PC): ilustración de "Imprime tu foto" ~45% más grande */
+@media(min-width:861px){
+  .print-band .polaroid-lg{justify-self:center}
+  .print-band .polaroid-lg img{width:430px}
+  .print-band .polaroid-lg::before{width:365px}
+}
